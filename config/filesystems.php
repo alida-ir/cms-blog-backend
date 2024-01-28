@@ -34,7 +34,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app'),
         ],
-
+        'liara' => [
+            'driver' => 's3',
+            'endpoint' => env('ENDPOINT_URL'),
+            'key' => env('ACCESS_KEY'),
+            'secret' => env('SECRET_KEY'),
+            'region' => env('DEFAULT_REGION'),
+            'bucket' => env('BUCKET_NAME'),
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

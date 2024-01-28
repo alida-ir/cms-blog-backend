@@ -14,16 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::get("/posts" , [\App\Http\Controllers\Api\PostController::class , 'all']);
+Route::post("/posts" , [\App\Http\Controllers\Api\PostController::class , 'all'])->withoutMiddleware("throttle:api");
 
-Route::get("/posts/last" , [\App\Http\Controllers\Api\PostController::class , 'last']);
+Route::post("/posts/last" , [\App\Http\Controllers\Api\PostController::class , 'last'])->withoutMiddleware("throttle:api");
 
-Route::get("/post/{post:slug}" , [\App\Http\Controllers\Api\PostController::class , 'get']);
+Route::post("/post/{post:slug}" , [\App\Http\Controllers\Api\PostController::class , 'get'])->withoutMiddleware("throttle:api");
 
-Route::get("/tags" , [\App\Http\Controllers\Api\TagController::class , 'all']);
+Route::post("/tags" , [\App\Http\Controllers\Api\TagController::class , 'all'])->withoutMiddleware("throttle:api");
 
-Route::get("/tag/{tag:name}" , [\App\Http\Controllers\Api\TagController::class , 'get']);
+Route::post("/tag/{tag:name}" , [\App\Http\Controllers\Api\TagController::class , 'get'])->withoutMiddleware("throttle:api");

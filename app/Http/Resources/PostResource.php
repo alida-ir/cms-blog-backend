@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class PostResource extends JsonResource
 {
@@ -25,11 +26,13 @@ class PostResource extends JsonResource
             "caption_en" => $this->caption_en ,
             "body_fa" => $this->body_fa ,
             "body_en" => $this->body_en ,
-            "time" => $this->created_at ,
             "Disable" => $this->disable ,
             "tags" => $this->whenLoaded('tags' , function (){
                 return TagResource::collection($this->tags);
-            })
+            }) ,
+            "time_fa" => verta($this->created_at)->format("Y/m/d") ,
+            "time_en" => Carbon::make($this->created_at)->format("Y/m/d") ,
+
         ];
     }
 }
