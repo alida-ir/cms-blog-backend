@@ -49,11 +49,11 @@ class AdminPanelController extends Controller
         $name = pathinfo($cover->getClientOriginalName() , PATHINFO_FILENAME);
         $ext = $cover->getClientOriginalExtension();
         $new = $name . "_post_" . rand(0 , 9999999999) . "." . $ext;
-        if(env('APP_ENV') == "production") {
-            $file = $cover->storeAs("post/cover" , $new , 'liara');
-            $path = "https://dl.alida.ir/" . $file;
+        if(env('USE_LIARA_STORAGE')) {
+            $file = $cover->storeAs("image/cover/post" , $new , 'liara');
+            $path = env("STORAGE_URL") . $file;
         }else{
-            $file = $cover->storeAs("post/cover" , $new , 'public_html');
+            $file = $cover->storeAs("image/cover/post" , $new , 'public_html');
             $path = url('files/' . $file)  ;
         }
         $disable = $request->has('disable') ? false : true ;
@@ -126,11 +126,11 @@ class AdminPanelController extends Controller
             $name = pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
             $ext = $cover->getClientOriginalExtension();
             $new = $name . "_post_" . rand(0, 9999999999) . "." . $ext;
-            if (env('APP_ENV') == "production") {
-                $file = $cover->storeAs("post/cover", $new, 'liara');
-                $path = "https://dl.alida.ir/" . $file;
+            if (env('USE_LIARA_STORAGE')) {
+                $file = $cover->storeAs("image/cover/post", $new, 'liara');
+                $path = env("STORAGE_URL") . $file;
             } else {
-                $file = $cover->storeAs("post/cover", $new, 'public_html');
+                $file = $cover->storeAs("image/cover/post", $new, 'public_html');
                 $path = url('files/' . $file);
             }
             $data['cover']= $path ;
@@ -194,11 +194,11 @@ class AdminPanelController extends Controller
         $name = pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
         $ext = $cover->getClientOriginalExtension();
         $new = $name . "_tag_" . rand(0, 9999999999) . "." . $ext;
-        if (env('APP_ENV') == "production") {
-            $file = $cover->storeAs("tag/cover", $new, 'liara');
-            $path = "https://dl.alida.ir/" . $file;
+        if(env('USE_LIARA_STORAGE')) {
+            $file = $cover->storeAs("image/cover/tag", $new, 'liara');
+            $path = env("STORAGE_URL") . $file;
         } else {
-            $file = $cover->storeAs("tag/cover", $new, 'public_html');
+            $file = $cover->storeAs("image/cover/tag", $new, 'public_html');
             $path = url('files/' . $file);
         }
 
@@ -252,11 +252,11 @@ class AdminPanelController extends Controller
             $name = pathinfo($cover->getClientOriginalName(), PATHINFO_FILENAME);
             $ext = $cover->getClientOriginalExtension();
             $new = $name . "_tag_" . rand(0, 9999999999) . "." . $ext;
-            if (env('APP_ENV') == "production") {
-                $file = $cover->storeAs("tag/cover", $new, 'liara');
-                $path = "https://dl.alida.ir/" . $file;
+            if(env('USE_LIARA_STORAGE')) {
+                $file = $cover->storeAs("image/cover/tag", $new, 'liara');
+                $path = env("STORAGE_URL") . $file;
             } else {
-                $file = $cover->storeAs("tag/cover", $new, 'public_html');
+                $file = $cover->storeAs("image/cover/tag", $new, 'public_html');
                 $path = url('files/' . $file);
             }
             $data['img']= $path ;
@@ -285,12 +285,11 @@ class AdminPanelController extends Controller
         $name = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
         $ext = $img->getClientOriginalExtension();
         $new = $name . "_image_" . rand(0, 9999999999) . "." . $ext;
-        if (env('APP_ENV') == "production") {
-            $file = $img->storeAs("files/image", $new, 'liara');
-            $path = "https://dl.alida.ir/" . $file;
-
+        if(env('USE_LIARA_STORAGE')) {
+            $file = $img->storeAs("image/upload", $new, 'liara');
+            $path = env("STORAGE_URL") . $file;
         } else {
-            $file = $img->storeAs("files/image", $new, 'public_html');
+            $file = $img->storeAs("files/upload", $new, 'public_html');
             $path = url('files/' . $file);
         }
         Session::flash('fileImg' , $path);

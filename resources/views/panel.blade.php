@@ -13,7 +13,7 @@
 <div class="container-fluid">
     <nav class="navbar bg-light navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">مدیریت وبسایت</a>
+            <a class="navbar-brand" href="{{ route('panel-admin') }}">مدیریت وبسایت</a>
         </div>
         <div class="d-flex bg-danger justify-content-center rounded">
             <a class="p-2 text-white text-center" href="{{ route('logout-admin') }}">خروج</a>

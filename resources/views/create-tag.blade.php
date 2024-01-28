@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <nav class="navbar bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">مدیریت وبسایت</a>
+            <a class="navbar-brand" href="{{ route('panel-admin') }}">مدیریت وبسایت</a>
         </div>
     </nav>
 
